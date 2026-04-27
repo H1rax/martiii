@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Marťuuu</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #fff 0%, #ffe1ef 45%, #ffc6dd 100%);
+      font-family: system-ui, sans-serif;
+      overflow: hidden;
+      color: #8a2d57;
+    }
+
+    .card {
+      width: min(92vw, 390px);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .small {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #c53b78;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 25px rgba(255, 80, 150, 0.15);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      font-size: 12px;
+      color: #946969;
+    }
+
+    .text {
+      margin: 12px auto 34px;
+      max-width: 280px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #9d4b6d;
+    }
+
+    .gift {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 56px 20px 40px;
+      background: #ff80b3;
+      border-radius: 18px;
+      box-shadow: 0 24px 45px rgba(220, 54, 120, 0.24);
+      overflow: hidden;
+      z-index: 4;
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 50%, #ff5a9f 50%);
+      clip-path: polygon(0 0, 50% 50%, 0 100%);
+    }
+
+    .envelope::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(225deg, transparent 50%, #ff6fab 50%);
+      clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+    }
+
+    .flap {
+      position: absolute;
+      left: 20px;
+      top: 56px;
+      width: 220px;
+      height: 110px;
+      background: #ff9bc6;
+      clip-path: polygon(0 0, 50% 80%, 100% 0);
+      transform-origin: top;
+      transition: 0.8s ease;
+      z-index: 6;
+    }
+
+    .letter {
+      position: absolute;
+      left: 35px;
+      top: 74px;
+      width: 190px;
+      height: 135px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 16px 35px rgba(148, 44, 90, 0.16);
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      transform: translateY(40px);
+      transition: 0.9s ease 0.25s;
+    }
+
+    .letter-content {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 0.6s ease 0.7s;
+      padding: 16px;
+    }
+
+    .flower {
+      font-size: 50px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .letter-content strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 24px;
+      color: #ff4d98;
+    }
+
+    .gift.open .flap {
+      transform: rotateX(180deg);
+      z-index: 2;
+    }
+
+    .gift.open .letter {
+      transform: translateY(-35px);
+      z-index: 7;
+    }
+
+    .gift.open .letter-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message {
+      margin-top: 18px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: 0.7s ease 0.7s;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #8e3d60;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 22px;
+      pointer-events: none;
+      animation: float 1.7s ease forwards;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) scale(0.7);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-130px) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @media (max-height: 650px) {
+      h1 {
+        font-size: 29px;
+      }
+
+      .text {
+        margin-bottom: 18px;
+      }
+
+      .gift {
+        transform: scale(0.88);
+        margin-top: -10px;
+        margin-bottom: -15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="small">něco malého 🌸</div>
+
+    <h1>Pro Marťu<span>(mommy)</span></h1>
+
+    <p class="text">Klikni na obálku</p>
+
+    <div class="gift" id="gift">
+      <div class="letter">
+        <div class="letter-content">
+          <div class="flower">🌷</div>
+          <strong>Pro Marťuuu</strong>
+        </div>
+      </div>
+
+      <div class="flap"></div>
+      <div class="envelope"></div>
+    </div>
+
+    <p class="message" id="message">
+      Jen jsem ti chtěl udělat menší radost 💗
+    </p>
+  </main>
+
+  <script>
+    const gift = document.getElementById("gift");
+    const message = document.getElementById("message");
+
+    gift.addEventListener("click", () => {
+      gift.classList.add("open");
+      message.classList.add("show");
+      hearts();
+    });
+
+    function hearts() {
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = ["💗", "🌸", "✨"][Math.floor(Math.random() * 3)];
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight - 120 + Math.random() * 60 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1800);
+      }
+    }
+  </script>
+</body>
+</html>
