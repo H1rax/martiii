@@ -50,6 +50,8 @@
     h1 span {
       font-size: 12px;
       color: #946969;
+      margin-left: 4px;
+      vertical-align: middle;
     }
 
     .text {
@@ -75,7 +77,7 @@
       border-radius: 18px;
       box-shadow: 0 24px 45px rgba(220, 54, 120, 0.24);
       overflow: hidden;
-      z-index: 4;
+      z-index: 5;
     }
 
     .envelope::before {
@@ -110,16 +112,16 @@
     .letter {
       position: absolute;
       left: 35px;
-      top: 74px;
+      top: 85px;
       width: 190px;
       height: 135px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.96);
       box-shadow: 0 16px 35px rgba(148, 44, 90, 0.16);
-      z-index: 3;
+      z-index: 2;
       display: grid;
       place-items: center;
-      transform: translateY(40px);
+      transform: translateY(70px);
       transition: 0.9s ease 0.25s;
     }
 
@@ -148,7 +150,7 @@
     }
 
     .gift.open .letter {
-      transform: translateY(-35px);
+      transform: translateY(-55px);
       z-index: 7;
     }
 
@@ -162,7 +164,7 @@
       opacity: 0;
       transform: translateY(16px);
       transition: 0.7s ease 0.7s;
-      font-size: 16px;
+      font-size: 30px;
       line-height: 1.5;
       color: #8e3d60;
     }
@@ -237,9 +239,7 @@
       <div class="envelope"></div>
     </div>
 
-    <p class="message" id="message">
-      💗
-    </p>
+    <p class="message" id="message">💗</p>
   </main>
 
   <script>
